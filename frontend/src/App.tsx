@@ -5,6 +5,7 @@ import { HomePage } from '@/features/home/HomePage'
 import { CatalogPage } from '@/features/listings/CatalogPage'
 import { ListingDetailPage } from '@/features/listings/ListingDetailPage'
 import { CreateListingPage } from '@/features/listings/CreateListingPage'
+import { EditListingPage } from '@/features/listings/EditListingPage'
 import { MyListingsPage } from '@/features/listings/MyListingsPage'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { RegisterPage } from '@/features/auth/RegisterPage'
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/listings/new" element={<CreateListingPage />} />
+          <Route path="/listings/:id/edit" element={<EditListingPage />} />
           <Route path="/listings/:id" element={<ListingDetailPage />} />
           <Route path="/my-listings" element={<MyListingsPage />} />
           <Route path="/profile" element={<ProfilePage />} />

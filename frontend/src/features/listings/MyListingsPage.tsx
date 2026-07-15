@@ -131,32 +131,19 @@ export function MyListingsPage() {
                   >
                     <Edit3 size={16} />
                   </Button>
-                  {listing.status !== 'archived' && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => archiveMutation.mutate({ id: listing.id })}
-                      title="Archive listing"
-                      disabled={archiveMutation.isPending}
-                    >
-                      <Trash2 size={16} className="text-muted-foreground hover:text-destructive" />
-                    </Button>
-                  )}
-                  {listing.status === 'archived' && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => {
-                        if (confirm('Permanently delete this listing?')) {
-                          deleteMutation.mutate(listing.id)
-                        }
-                      }}
-                      title="Delete permanently"
-                      disabled={deleteMutation.isPending}
-                    >
-                      <Trash2 size={16} className="text-destructive" />
-                    </Button>
-                  )}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      if (confirm('Delete this listing permanently?')) {
+                        deleteMutation.mutate(listing.id)
+                      }
+                    }}
+                    title="Delete listing"
+                    disabled={deleteMutation.isPending}
+                  >
+                    <Trash2 size={16} className="text-destructive" />
+                  </Button>
                 </div>
               </div>
             )
