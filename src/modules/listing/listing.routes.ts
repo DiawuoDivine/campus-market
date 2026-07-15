@@ -5,6 +5,7 @@ import { validate } from '../../lib/validate'
 import { ok, created, noContent } from '../../lib/response'
 import { param } from '../../lib/param'
 import { createListingSchema, updateListingSchema, listingsQuerySchema } from './listing.dto'
+import type { ListingsQuery } from './listing.dto'
 import { getListingStats } from './listing.stats'
 import type { ListingService } from './listing.service'
 
