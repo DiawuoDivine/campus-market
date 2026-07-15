@@ -14,7 +14,7 @@ import type {
 
 // In dev the Vite proxy forwards /api → localhost:8080, so we use '' (relative).
 // Override with VITE_API_BASE_URL if deploying the frontend separately.
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
+const BASE = "https://campus-market-ttui.onrender.com"
 
 async function request<T>(path: string, init?: RequestInit): Promise<{ data: T; meta?: ApiEnvelope<T>['meta'] }> {
   const token = localStorage.getItem('access_token')

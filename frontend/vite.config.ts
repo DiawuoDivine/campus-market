@@ -14,7 +14,7 @@ export default defineConfig({
     proxy: {
       // Forward all /api requests to the Bun backend in dev
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'https://campus-market-ttui.onrender.com/',
         changeOrigin: true,
       },
     },
