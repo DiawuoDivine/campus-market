@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "types": ["bun-types"]
+  },
+  "include": ["src/**/*", "scripts/**/*", "drizzle.config.ts"],
+  "exclude": ["node_modules", "dist", "frontend"]
+}

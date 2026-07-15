@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UniMarket | Secure Student Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #DEE2E6;
+            border-radius: 10px;
+        }
+        .perimeter-card {
+            border: 1px solid #e5e2e1;
+            transition: border-color 0.2s ease;
+        }
+        .perimeter-card:hover {
+            border-color: #570000;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#ffb4a8",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#544600",
+                      "secondary-fixed": "#ffe16d",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#ffdad4",
+                      "surface": "#fcf9f8",
+                      "on-primary-container": "#ff8371",
+                      "secondary-container": "#fcd400",
+                      "inverse-on-surface": "#f3f0ef",
+                      "outline": "#8e706c",
+                      "on-surface": "#1c1b1b",
+                      "inverse-primary": "#ffb4a8",
+                      "tertiary-container": "#004800",
+                      "tertiary-fixed-dim": "#72de5e",
+                      "on-surface-variant": "#5a413d",
+                      "on-secondary-fixed": "#221b00",
+                      "on-primary-fixed-variant": "#8f0f07",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#f0eded",
+                      "background": "#fcf9f8",
+                      "tertiary-fixed": "#8dfb77",
+                      "primary": "#570000",
+                      "surface-bright": "#fcf9f8",
+                      "on-primary-fixed": "#410000",
+                      "surface-dim": "#dcd9d9",
+                      "surface-container-low": "#f6f3f2",
+                      "on-background": "#1c1b1b",
+                      "secondary": "#705d00",
+                      "primary-container": "#800000",
+                      "surface-tint": "#b22b1d",
+                      "secondary-fixed-dim": "#e9c400",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-container-high": "#eae7e7",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#e2bfb9",
+                      "on-tertiary-fixed-variant": "#005300",
+                      "surface-variant": "#e5e2e1",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-container": "#6e5c00",
+                      "tertiary": "#002f00",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#002200",
+                      "inverse-surface": "#313030",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#53be42"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Source Serif 4"],
+                      "body-lg": ["Source Sans 3"],
+                      "display-lg": ["Source Serif 4"],
+                      "headline-md": ["Source Serif 4"],
+                      "label-md": ["Source Sans 3"],
+                      "headline-lg-mobile": ["Source Serif 4"],
+                      "title-lg": ["Source Sans 3"],
+                      "caption": ["Source Sans 3"],
+                      "body-md": ["Source Sans 3"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                      "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-unit max-w-container-max mx-auto border-b border-surface-container-highest bg-surface h-16">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">UniMarket</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 font-body-md" href="#">Catalog</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Safe Zones</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md" href="#">Verification</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded focus:outline-none focus:border-primary text-body-md w-64" placeholder="Search catalog..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity">chat_bubble</button>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity">account_circle</button>
+</div>
+</header>
+<main class="pt-16 pb-20 md:pb-8 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row gap-gutter mt-margin-desktop">
+<!-- Left Sidebar: Filters -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="bg-surface-container-lowest p-margin-mobile border border-surface-container-highest sticky top-24">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-title-lg text-title-lg text-primary">Filters</h2>
+<button class="text-caption font-label-md text-secondary uppercase tracking-wider hover:underline">Clear all</button>
+</div>
+<!-- Categories -->
+<div class="mb-8">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-4">Category</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded-sm border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary">Textbooks</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary">Tech &amp; Gadgets</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary">Fashion</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary">Dorm Essentials</span>
+</label>
+</div>
+</div>
+<!-- Condition -->
+<div class="mb-8">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-4">Condition</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="border-outline-variant text-primary focus:ring-primary" name="condition" type="radio"/>
+<span class="text-body-md">New</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="border-outline-variant text-primary focus:ring-primary" name="condition" type="radio"/>
+<span class="text-body-md">Used - Like New</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="border-outline-variant text-primary focus:ring-primary" name="condition" type="radio"/>
+<span class="text-body-md">Used - Fair</span>
+</label>
+</div>
+</div>
+<!-- Price Range -->
+<div class="mb-6">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-4">Price Range</h3>
+<div class="grid grid-cols-2 gap-2">
+<div class="relative">
+<span class="absolute left-2 top-1/2 -translate-y-1/2 text-caption text-outline">$</span>
+<input class="w-full pl-6 pr-2 py-2 border border-outline-variant text-body-md rounded" placeholder="Min" type="number"/>
+</div>
+<div class="relative">
+<span class="absolute left-2 top-1/2 -translate-y-1/2 text-caption text-outline">$</span>
+<input class="w-full pl-6 pr-2 py-2 border border-outline-variant text-body-md rounded" placeholder="Max" type="number"/>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 font-body-md font-semibold hover:bg-primary-container transition-colors">Apply Filters</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-grow">
+<!-- Controls Row -->
+<div class="flex flex-col gap-4 mb-6">
+<div class="flex items-center justify-between">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Product Catalog</h1>
+<div class="flex items-center gap-3">
+<span class="text-caption font-label-md text-on-surface-variant">Sort by:</span>
+<select class="border-none bg-transparent text-body-md font-semibold text-primary focus:ring-0 cursor-pointer">
+<option>Recent</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+</select>
+</div>
+</div>
+<!-- Active Filter Chips -->
+<div class="flex flex-wrap gap-2">
+<div class="flex items-center gap-2 bg-secondary-fixed px-3 py-1.5 rounded-full border border-secondary-container">
+<span class="text-caption font-label-md text-on-secondary-container">Textbooks</span>
+<button class="material-symbols-outlined text-[16px] text-on-secondary-container hover:opacity-70">close</button>
+</div>
+<div class="flex items-center gap-2 bg-secondary-fixed px-3 py-1.5 rounded-full border border-secondary-container">
+<span class="text-caption font-label-md text-on-secondary-container">Under $100</span>
+<button class="material-symbols-outlined text-[16px] text-on-secondary-container hover:opacity-70">close</button>
+</div>
+<button class="text-caption font-label-md text-secondary font-bold hover:underline ml-2">Clear all</button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="perimeter-card bg-surface-container-lowest overflow-hidden flex flex-col h-full group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A clean, professional photograph of a modern organic chemistry textbook resting on a dark mahogany university library table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEfYZnb-ZGgy1c383c3cOLmmlvOBLd6VPBLT4Ghsz7PMlSQeXm-JIWl1lLAJO1g0rU-d-X9cd9bO4plUoeis7I2iQznibRYtOn8_kqzwOgBhjkjjITvixvMXHMBtw8PWjnr2a8YkTlieyF4pTHXcdIZ2nmNWOVeKPooF5qbXF985T8r6K0xjsAREsucEzPaeU39QTJYKAWiFMNIwv2FVQw1fPHMgUXQsXuBeaTrJCQCwNq4Fvfj3mN"/>
+<div class="absolute top-2 left-2 bg-tertiary text-on-tertiary px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Verified Student</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-md text-[10px] text-secondary uppercase mb-1">Textbooks</span>
+<h3 class="font-title-lg text-body-lg font-semibold text-primary mb-2 line-clamp-2">Organic Chemistry: Structure and Function (8th Edition)</h3>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-title-lg font-bold text-primary">$45.00</span>
+<button class="bg-secondary text-white px-4 py-2 rounded text-caption font-bold hover:opacity-90 transition-opacity">Contact Seller</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="perimeter-card bg-surface-container-lowest overflow-hidden flex flex-col h-full group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A high-end product shot of sleek, silver noise-canceling headphones resting on a minimalist light gray desk surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBeTNPARkAvTBOQS7i0SRuIcMA1SguFM0MtxLYDQUV74oQHxx4AMKoqwW39I8zUezz0H_dulXuIWGT8VYvmsBmrItQDl2fQaGOIJwBF8Lqh3ssGfGDu8v-wZpNV3ro8qvvXSDErsXXnFRvtOoWqTRp6bj5McisGMoKOVYm9nfwpyWSoysMkLgSl1mYyUUg6mBTg78Ct9eh7VaFX4yy_LxW4hPPv1p5FbpsQSHpE6ZCO8bUCF5vK2Gb"/>
+<div class="absolute top-2 left-2 bg-tertiary text-on-tertiary px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Verified Student</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-md text-[10px] text-secondary uppercase mb-1">Tech &amp; Gadgets</span>
+<h3 class="font-title-lg text-body-lg font-semibold text-primary mb-2 line-clamp-2">Sony WH-1000XM4 Noise Canceling Headphones</h3>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-title-lg font-bold text-primary">$180.00</span>
+<button class="bg-secondary text-white px-4 py-2 rounded text-caption font-bold hover:opacity-90 transition-opacity">Contact Seller</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="perimeter-card bg-surface-container-lowest overflow-hidden flex flex-col h-full group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A professionally folded navy blue university branded hoodie displayed on a neutral light gray background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2PBOfKecnL0It-f9_8a1FIVgT_h6BCUAoNVOHvkmXqPZ0gxy1qUIJlax3i-cjocFtWYh4yRckpVGXSlAd3tfnpqw1Rx1NFJzaanJljXep4DiFCbQwRYD6kR6qrp6272iq4ZoUY7boJ301YaJXIIDZvGi-uWkIdm8WVxTIiTnLaAErGyeUSqYwxVBmfyy-ZvAMd0TweMr0lHWOqvGYhMx5J0PKSmFrVmRuF8WqmxtOmxETPNXr4vuE"/>
+<div class="absolute top-2 left-2 bg-tertiary text-on-tertiary px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Verified Student</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-md text-[10px] text-secondary uppercase mb-1">Fashion</span>
+<h3 class="font-title-lg text-body-lg font-semibold text-primary mb-2 line-clamp-2">University Limited Edition Heritage Hoodie - Large</h3>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-title-lg font-bold text-primary">$25.00</span>
+<button class="bg-secondary text-white px-4 py-2 rounded text-caption font-bold hover:opacity-90 transition-opacity">Contact Seller</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="perimeter-card bg-surface-container-lowest overflow-hidden flex flex-col h-full group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A modern, minimalist desk lamp with an adjustable neck and matte black finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX8XL3NSCRLqS9IrwROfzUe8r2i_NBz4EXept4_UWhGYQ1gkF_jxZ2ZY2MWFX2oanzwiCMAhBxqG_epsXDdIeCsWLELtNLyFZQZZhRL73hFlGDZsBYnlAGTbT6mFifpBeXAwPg9TX06FmXdM6memDPgBTNmrfiYBBryKObhynHxl01Wno1x-j1-eExL4qKXAMCVsIE284xdTGRjOkmSoT2EvkA2DAP4VoYdPTL0rd1PNlf_rdMNTl4"/>
+<div class="absolute top-2 left-2 bg-tertiary text-on-tertiary px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Verified Student</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-md text-[10px] text-secondary uppercase mb-1">Dorm Essentials</span>
+<h3 class="font-title-lg text-body-lg font-semibold text-primary mb-2 line-clamp-2">Adjustable LED Desk Lamp with USB Charging Port</h3>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-title-lg font-bold text-primary">$15.00</span>
+<button class="bg-secondary text-white px-4 py-2 rounded text-caption font-bold hover:opacity-90 transition-opacity">Contact Seller</button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="perimeter-card bg-surface-container-lowest overflow-hidden flex flex-col h-full group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A sleek graphite-colored tablet with its stylus resting on its screen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSXLGDYKYuPXtGp0j0BmWiZ5Xap3LQjANyOP-qUxP3_eYno-PCcl-B6gamMIbpCS81LzXHtM8e0Cqgzqh-gxh0NreF4ZpT-0uFdpxHKmucZ6l1jnXfzGXrcgMdSmU8LRGnss4hKkEmMi5UgReDigFvSRtMhNqH2O7RmQL_pIlOiedHshSuUXrM-XTI7Y9baz9O_AYxsguzqkKa0Ct9TMz_x-lbQBJ76znxjmfFO3G4VLKlubaqTX5-"/>
+<div class="absolute top-2 left-2 bg-tertiary text-on-tertiary px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Verified Student</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-md text-[10px] text-secondary uppercase mb-1">Tech &amp; Gadgets</span>
+<h3 class="font-title-lg text-body-lg font-semibold text-primary mb-2 line-clamp-2">iPad Air 4th Gen - 64GB Silver + Apple Pencil</h3>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-title-lg font-bold text-primary">$320.00</span>
+<button class="bg-secondary text-white px-4 py-2 rounded text-caption font-bold hover:opacity-90 transition-opacity">Contact Seller</button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="perimeter-card bg-surface-container-lowest overflow-hidden flex flex-col h-full group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A stack of three thick hardcover textbooks on economics and statistics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKu2gclQ1HUyIBcEU9SUHC5dDPTLiRqmJrOaO2mw2kzT8zCp-D9KgOejRpsKII7Mmf1R6CxJDs43qpreNuLMbLNvbvqzEYSnjtH8RqTJpxIhZ61EWkXEI69o_f-AwwMA4BIm74dymWw72IvitubhMIs6wOR_X9s2N5KSgVA4XnFconLmEHlPL0LsJHR85YygacV6Q0uCsIyAw8DAeryqk0vc0Dm6uJZG4OUCJbGt0IjW0HJRV7ehBM"/>
+<div class="absolute top-2 left-2 bg-tertiary text-on-tertiary px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Verified Student</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-grow">
+<span class="font-label-md text-[10px] text-secondary uppercase mb-1">Textbooks</span>
+<h3 class="font-title-lg text-body-lg font-semibold text-primary mb-2 line-clamp-2">Introductory Econometrics: A Modern Approach</h3>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-title-lg font-bold text-primary">$60.00</span>
+<button class="bg-secondary text-white px-4 py-2 rounded text-caption font-bold hover:opacity-90 transition-opacity">Contact Seller</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center items-center gap-2">
+<button class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 bg-primary text-on-primary font-bold">1</button>
+<button class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">2</button>
+<button class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">3</button>
+<span class="px-2 text-outline">...</span>
+<button class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">12</button>
+<button class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-margin-desktop px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto border-t border-surface-container-highest bg-surface-container-low mt-16">
+<div class="mb-6 md:mb-0">
+<span class="font-title-lg text-title-lg font-bold text-primary">UniMarket</span>
+<p class="mt-2 text-on-surface-variant font-body-md text-caption">© 2024 UniMarket Managed Workspace. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="text-on-surface-variant hover:underline hover:text-secondary font-body-md text-caption transition-all duration-200" href="#">Safety Guidelines</a>
+<a class="text-on-surface-variant hover:underline hover:text-secondary font-body-md text-caption transition-all duration-200" href="#">Contact Support</a>
+<a class="text-on-surface-variant hover:underline hover:text-secondary font-body-md text-caption transition-all duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:underline hover:text-secondary font-body-md text-caption transition-all duration-200" href="#">Terms of Service</a>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface border-t border-surface-container-highest px-4 pb-safe shadow-sm">
+<button class="flex flex-col items-center justify-center text-secondary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-caption">Explore</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-md text-caption">Messages</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-caption">Listings</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-caption">Profile</span>
+</button>
+</nav>
+<script>
+    // Simple Interaction: Deepen border on card hover
+    document.querySelectorAll('.perimeter-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.borderColor = '#570000';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.borderColor = '#e5e2e1';
+        });
+    });
+</script>
+</body></html>

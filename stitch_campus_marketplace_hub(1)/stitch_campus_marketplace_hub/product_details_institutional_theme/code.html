@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MacBook Air M1 | UniMarket</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#ffb4a8",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#544600",
+                    "secondary-fixed": "#ffe16d",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#ffdad4",
+                    "surface": "#fcf9f8",
+                    "on-primary-container": "#ff8371",
+                    "secondary-container": "#fcd400",
+                    "inverse-on-surface": "#f3f0ef",
+                    "outline": "#8e706c",
+                    "on-surface": "#1c1b1b",
+                    "inverse-primary": "#ffb4a8",
+                    "tertiary-container": "#004800",
+                    "tertiary-fixed-dim": "#72de5e",
+                    "on-surface-variant": "#5a413d",
+                    "on-secondary-fixed": "#221b00",
+                    "on-primary-fixed-variant": "#8f0f07",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f0eded",
+                    "background": "#fcf9f8",
+                    "tertiary-fixed": "#8dfb77",
+                    "primary": "#570000",
+                    "surface-bright": "#fcf9f8",
+                    "on-primary-fixed": "#410000",
+                    "surface-dim": "#dcd9d9",
+                    "surface-container-low": "#f6f3f2",
+                    "on-background": "#1c1b1b",
+                    "secondary": "#705d00",
+                    "primary-container": "#800000",
+                    "surface-tint": "#b22b1d",
+                    "secondary-fixed-dim": "#e9c400",
+                    "surface-container-highest": "#e5e2e1",
+                    "surface-container-high": "#eae7e7",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#e2bfb9",
+                    "on-tertiary-fixed-variant": "#005300",
+                    "surface-variant": "#e5e2e1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#6e5c00",
+                    "tertiary": "#002f00",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#002200",
+                    "inverse-surface": "#313030",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#53be42"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["\"Source Serif 4\""],
+                    "body-lg": ["\"Source Sans 3\""],
+                    "display-lg": ["\"Source Serif 4\""],
+                    "headline-md": ["\"Source Serif 4\""],
+                    "label-md": ["\"Source Sans 3\""],
+                    "headline-lg-mobile": ["\"Source Serif 4\""],
+                    "title-lg": ["\"Source Sans 3\""],
+                    "caption": ["\"Source Sans 3\""],
+                    "body-md": ["\"Source Sans 3\""]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fcf9f8;
+            color: #1c1b1b;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+        .active-thumb {
+            border: 2px solid #570000;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-20 md:pb-0">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container mx-auto border-b border-outline-variant bg-surface dark:bg-inverse-surface">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">UniMarket</span>
+<div class="hidden md:flex gap-6">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Catalog</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Safe Zones</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Verification</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:block relative">
+<input class="bg-surface-container-low border border-outline-variant rounded px-4 py-1 text-body-md focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search resources..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer">chat_bubble</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">account_circle</span>
+</div>
+</nav>
+<!-- Main Content Container -->
+<main class="mt-20 px-margin-mobile md:px-margin-desktop max-w-container mx-auto py-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-6 text-on-surface-variant font-caption text-caption">
+<a class="hover:underline" href="#">Catalog</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:underline" href="#">Electronics</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">MacBook Air M1</span>
+</nav>
+<div class="bento-grid">
+<!-- Left: Gallery Section -->
+<div class="col-span-12 lg:col-span-8 space-y-4">
+<div class="bg-white border border-outline-variant p-2 rounded-sm relative group overflow-hidden">
+<img class="w-full aspect-[4/3] object-cover transition-transform duration-500" data-alt="A professional high-resolution photograph of a Space Gray MacBook Air M1 placed on a clean white desk in a brightly lit modern university study lounge." id="mainImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Jp1d594YrugVlsLmOklSGi4yQdVP-cvcrmwLfG2nDh0XU7Dm5NEXcaGjHagnyS9p0V8xXkNbi11V2_gdGrEGLSfIrwPt1uyoiR-0NsUMiBeBKIw8C8ZrFgn0P-I5aPz_JIJx_Ne-eMljE4yBce35-gi3XSD_1_PQ_rnX8WvH3y0av9Ne0If6wy6OWJKNW2vKO66WFUzdlXrq0dJwxofhrCEE24yj-m9e2aPn1gFhqXwe6cBUACTU"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-on-tertiary-container flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-caption text-on-tertiary-container font-bold">PHYSICALLY VERIFIED</span>
+</div>
+</div>
+<!-- Thumbnails -->
+<div class="grid grid-cols-4 gap-4">
+<button class="active-thumb border border-outline-variant bg-white p-1 rounded-sm" onclick="updateImage(0)">
+<img class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr2wxeZSdPnsuL3aV-kIp19urrpJF9s_PKhz8fTRGjCI-5tD_Dv3mspGirwCfRVffeyCYRTmKK8zEg9vJiWRpzsPH2PhpTfGki7d3k-IX9wcWyV5teqb90M_eWhGRRW2TzcfTdRbFxeL7t9UTTz13Q8jCjWn6YmOUxqiVVt8WlvaH1CoCch8ZzxZQeSmtO8Wyfwvs012BneB9Rr-26ayM8F5YnayiIsrMNY-08TiJCdakrEhVkQHM"/>
+</button>
+<button class="border border-outline-variant bg-white p-1 rounded-sm opacity-70 hover:opacity-100 transition-opacity" onclick="updateImage(1)">
+<img class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeRnULwvQVDOG-n5zV-mzfj5Kk7CL66mfqfBEna6jvqCxq1uETPw7LDOW3dumfZqNDMkuYyBMs0LUBFSG5tgumpRa6Kn92HEo57mqcXUUURp_LHB8aadJFrBbRuCAdjQWaZOMLlSwHctsp3aYkZPnVf2RFEJMjD2_WWyA6T6px9ofe49dLTOaRGKVIfmtSiJV06E7MpbXELuo0a6IBZdnjxYu2aAYCQGbv6BbHWMQLo-QqCda72L79"/>
+</button>
+<button class="border border-outline-variant bg-white p-1 rounded-sm opacity-70 hover:opacity-100 transition-opacity" onclick="updateImage(2)">
+<img class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASWQaFsss6ML23z_vvRp7ngbupJsPuTeHMECExpTbqAVa8whk6bttF7VvfPLhKXF5j2K98JwJ2cOh_MnAlJ-Xn9MV8pqHat51Va37s350BFlPuVgprGV2hVmwhMvQOQ7Dtz9PTdAyaHIWwUNtaDR0U29Zd2fwr6mtiZhHfJf-RCqkOgwSBBKrrrc4rIMZH1x8H3SuwJGjr9ng5qPuT-9bRbwcNjUF7_u0vEtTRXe_rjxsNVpVbe3DB"/>
+</button>
+<button class="border border-outline-variant bg-white p-1 rounded-sm opacity-70 hover:opacity-100 transition-opacity relative" onclick="updateImage(3)">
+<img class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU5dJ2ctXD3kj9pFta4uBobUGK7cBPlWZdQSv6IyAI-q7K8jlKDAcqP2M29mLAfbhUpFUl7jTjszDvMGwPdfjWK4Z5OMyrjfEQlN53XsZp-DVJQm1u8WAhhkExAIs6a9RhDWTI8OLu5AcbTjiL6bGi7j96II3UWk4-AjKI0pbT6Aycljdlf8kHAFn_xYq-a8k23mLLItv0NpS_ROKqVfnoVWtk_F6kss2reS2EH-U3u59MS8zhrY4L"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-caption text-caption font-bold">+2 More</div>
+</button>
+</div>
+</div>
+<!-- Right: Details & Sidebar -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-white border border-outline-variant p-6 space-y-4">
+<div class="space-y-1">
+<h1 class="font-headline-lg text-headline-lg text-primary">MacBook Air M1</h1>
+<p class="font-headline-md text-headline-md text-secondary font-bold">$750.00</p>
+</div>
+<div class="flex items-center gap-3 py-4 border-y border-outline-variant">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAxijULvfN5ie7lL7-W5BqMpJOQzHy8bg5yUh27dikTzlMPYmKB-EHjAs0rOL2h7s22pdKMzYe9r9_78XPql0z63q6xBgbFisNgUilQ_NAfp6wZxP7p57MsXTYLT_YsDt-EzYcBjOUH_NvpeNPilxSQ_eD9ZC5u2BiyXPwrCjj5Anqi_vhQy8yhboLLhp0pwqqEzeycb7nuw1JOjD0Qnbvr6Vod6vAL9zR9TQJaCAkdi9isSHmEZ2h"/>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-title-lg text-title-lg font-bold text-primary">Alex Chen</span>
+<div class="bg-on-tertiary-container/10 text-on-tertiary-container px-2 py-0.5 rounded-full flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-[10px] tracking-wider uppercase font-bold">Verified Student</span>
+</div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">Engineering Senior • @edu.gh verified</p>
+</div>
+</div>
+<div class="space-y-2">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase">Description</h3>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                        Perfect condition, used for one semester. Comes with original charger and box. Battery health is at 98%. Selling because I upgraded for my senior design project. No scratches or dents.
+                    </p>
+</div>
+<button class="w-full bg-primary text-on-primary font-body-lg text-body-lg font-bold py-3 rounded-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+<span class="material-symbols-outlined">chat</span>
+                    Chat with Seller
+                </button>
+</div>
+<!-- Safety Sidebar -->
+<div class="bg-surface-container-low border border-outline-variant p-6 rounded-sm space-y-4">
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined">shield</span>
+<h3 class="font-title-lg text-title-lg">Safety First</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">This seller has agreed to use the university's managed safe zones for the exchange.</p>
+<div class="group cursor-pointer">
+<div class="relative w-full h-32 rounded-sm overflow-hidden mb-2 border border-outline-variant">
+<div class="absolute inset-0 bg-primary/5 flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary scale-150">location_on</span>
+</div>
+<div class="w-full h-full bg-surface-container-highest opacity-50"></div>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">location_on</span>
+<div>
+<p class="font-body-md text-body-md font-bold text-primary">Campus Library (Safe Zone)</p>
+<p class="font-caption text-caption text-on-surface-variant">Public area with CCTV and campus security presence.</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-3 border border-outline-variant rounded-sm">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+<span class="font-caption text-caption font-bold">UniMarket Escrow</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">Payment is held securely until you confirm receipt of the item at the safe zone.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Similar Items Section -->
+<section class="mt-16 space-y-6">
+<div class="flex justify-between items-end border-b border-outline-variant pb-2">
+<h2 class="font-headline-md text-headline-md text-primary">More from Electronics</h2>
+<a class="text-secondary font-bold font-caption text-caption hover:underline" href="#">View all</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Item Card 1 -->
+<div class="bg-white border border-outline-variant group cursor-pointer overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh8c6HehET5BcT7knepR4FpwNFUxDSrbnVosYSxdm408MRjNvZbgziaQwFFnWZ2FWzR2WpK2GV2zEhwmcXuSQCzRvvrjaPLMdGj5aCgacYCsWy7zj86hgf5gxYivYPGemh6yeXtGC2tYWHbpOkfDXngzZnYzqQTsqaIbA2usjtAxCe2YZfYuCFYFJUhWusVkqLHXZjMeAjVfGhmHMYObOSUR3gPybSsPJUmhSHrm-s61zBfwJpHIFV"/>
+<div class="absolute top-2 right-2 bg-on-tertiary-container text-on-tertiary px-2 py-0.5 rounded-full text-[10px] font-bold">STUDENT VERIFIED</div>
+</div>
+<div class="p-3 flex-grow">
+<p class="font-title-lg text-title-lg text-primary mb-1">$120.00</p>
+<p class="font-body-md text-body-md text-on-surface truncate">Sony WH-1000XM4 Headphones</p>
+</div>
+<div class="px-3 pb-3 flex items-center justify-between">
+<span class="font-label-md text-caption text-on-surface-variant uppercase">Electronics</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">favorite</span>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="bg-white border border-outline-variant group cursor-pointer overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvtDxIgeTq8dVK8V_J2iou3UtpNiK7xctlJ_C1cz2fW1sKVpLL8pQ9xCn-P8fBy0YcsemAzBTlek3YMRD05M1nV_vYy7wyHhnoXi9LUjwri568znrnDU1HUvwSsbsCQNs28V3gbPwH71__t63-OzROSSEncKngEs1w62kGP-ZUxN0KzKQgjr2BiC7DtFvXC9tiinfG-JAM631rHQDMHGDP7RyDXgn_m3izx7gwqYSyKwRhF_cLvWpt"/>
+</div>
+<div class="p-3 flex-grow">
+<p class="font-title-lg text-title-lg text-primary mb-1">$45.00</p>
+<p class="font-body-md text-body-md text-on-surface truncate">Mechanical Keyboard</p>
+</div>
+<div class="px-3 pb-3 flex items-center justify-between">
+<span class="font-label-md text-caption text-on-surface-variant uppercase">Electronics</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">favorite</span>
+</div>
+</div>
+<!-- Item Card 3 -->
+<div class="bg-white border border-outline-variant group cursor-pointer overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCylM6VTBcvq4IgiaE51czikGtmjZaGNuSil6TbEapSjzmUceThp8X_Xu4Zztz8OjuKVmz1sUN0Y3oa_PaJ6Axs0-6snnS1P1GVQ4mskxKFVbcsblnVVwVPsa3b7OuoeCLja-OXPy4UtGFza9b93gjHk70O_K2ArHFe6omUJzgrDeI0eVJfH83I5eXhvL5wuQd913QS4qqOLYt-8tkWZkAKEQGsrJmSbnOHRPggHPjFpojHJ8jq73Tm"/>
+<div class="absolute top-2 right-2 bg-secondary text-on-secondary px-2 py-0.5 rounded-full text-[10px] font-bold">BARGAIN</div>
+</div>
+<div class="p-3 flex-grow">
+<p class="font-title-lg text-title-lg text-primary mb-1">$80.00</p>
+<p class="font-body-md text-body-md text-on-surface truncate">24" Dell Monitor (1080p)</p>
+</div>
+<div class="px-3 pb-3 flex items-center justify-between">
+<span class="font-label-md text-caption text-on-surface-variant uppercase">Electronics</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">favorite</span>
+</div>
+</div>
+<!-- Item Card 4 -->
+<div class="bg-white border border-outline-variant group cursor-pointer overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_YbuCZ9xokGAD86V_jw0S4zpr7GyGy2V-EUiViwQc-0oUjwnHlJTSEK94i_U5Yqqm9WAQ8uwPQvgDLRhm_Qst3daOntq-pvFIpPWifJ6EDFIuwy7-wqCym_jqrywcNFxfK1ATg8MhmtCZ0h1NYyrMJVFGZ1wFH0GFM4ksCpIYzS8YC9yiip-egvWKQBsrFwG7dFf9sLuDO3kirRy3TyVjl6GiC7rqUDufLdguTQJzN5FMeurRRoBe"/>
+</div>
+<div class="p-3 flex-grow">
+<p class="font-title-lg text-title-lg text-primary mb-1">$25.00</p>
+<p class="font-body-md text-body-md text-on-surface truncate">Anker Power Bank 20,000mAh</p>
+</div>
+<div class="px-3 pb-3 flex items-center justify-between">
+<span class="font-label-md text-caption text-on-surface-variant uppercase">Electronics</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">favorite</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-margin-desktop px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container mx-auto border-t border-outline-variant bg-surface-container-low dark:bg-inverse-surface mt-12">
+<div class="flex flex-col items-center md:items-start gap-2 mb-6 md:mb-0">
+<span class="font-title-lg text-title-lg font-bold text-primary">UniMarket</span>
+<p class="font-caption text-caption text-on-surface-variant">© 2024 UniMarket Managed Workspace. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-caption text-caption text-on-surface-variant hover:underline hover:text-primary transition-all" href="#">Safety Guidelines</a>
+<a class="font-caption text-caption text-on-surface-variant hover:underline hover:text-primary transition-all" href="#">Contact Support</a>
+<a class="font-caption text-caption text-on-surface-variant hover:underline hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:underline hover:text-primary transition-all" href="#">Terms of Service</a>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface dark:bg-inverse-surface px-4 pb-safe border-t border-outline-variant md:hidden shadow-sm">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors p-2">
+<span class="material-symbols-outlined">search</span>
+<span class="font-caption text-[10px]">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors p-2">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-caption text-[10px]">Messages</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors p-2">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-caption text-[10px]">Listings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors p-2">
+<span class="material-symbols-outlined">person</span>
+<span class="font-caption text-[10px]">Profile</span>
+</div>
+</nav>
+<script>
+    function updateImage(index) {
+        const mainImg = document.getElementById('mainImage');
+        const thumbs = document.querySelectorAll('.grid.grid-cols-4 button');
+        
+        const sources = [
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuC5Jp1d594YrugVlsLmOklSGi4yQdVP-cvcrmwLfG2nDh0XU7Dm5NEXcaGjHagnyS9p0V8xXkNbi11V2_gdGrEGLSfIrwPt1uyoiR-0NsUMiBeBKIw8C8ZrFgn0P-I5aPz_JIJx_Ne-eMljE4yBce35-gi3XSD_1_PQ_rnX8WvH3y0av9Ne0If6wy6OWJKNW2vKO66WFUzdlXrq0dJwxofhrCEE24yj-m9e2aPn1gFhqXwe6cBUACTU",
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuAr2wxeZSdPnsuL3aV-kIp19urrpJF9s_PKhz8fTRGjCI-5tD_Dv3mspGirwCfRVffeyCYRTmKK8zEg9vJiWRpzsPH2PhpTfGki7d3k-IX9wcWyV5teqb90M_eWhGRRW2TzcfTdRbFxeL7t9UTTz13Q8jCjWn6YmOUxqiVVt8WlvaH1CoCch8ZzxZQeSmtO8Wyfwvs012BneB9Rr-26ayM8F5YnayiIsrMNY-08TiJCdakrEhVkQHM",
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuCeRnULwvQVDOG-n5zV-mzfj5Kk7CL66mfqfBEna6jvqCxq1uETPw7LDOW3dumfZqNDMkuYyBMs0LUBFSG5tgumpRa6Kn92HEo57mqcXUUURp_LHB8aadJFrBbRuCAdjQWaZOMLlSwHctsp3aYkZPnVf2RFEJMjD2_WWyA6T6px9ofe49dLTOaRGKVIfmtSiJV06E7MpbXELuo0a6IBZdnjxYu2aAYCQGbv6BbHWMQLo-QqCda72L79",
+            "https://lh3.googleusercontent.com/aida-public/AB6AXuASWQaFsss6ML23z_vvRp7ngbupJsPuTeHMECExpTbqAVa8whk6bttF7VvfPLhKXF5j2K98JwJ2cOh_MnAlJ-Xn9MV8pqHat51Va37s350BFlPuVgprGV2hVmwhMvQOQ7Dtz9PTdAyaHIWwUNtaDR0U29Zd2fwr6mtiZhHfJf-RCqkOgwSBBKrrrc4rIMZH1x8H3SuwJGjr9ng5qPuT-9bRbwcNjUF7_u0vEtTRXe_rjxsNVpVbe3DB"
+        ];
+
+        mainImg.src = sources[index];
+        
+        thumbs.forEach((t, i) => {
+            if(i === index) {
+                t.classList.add('active-thumb');
+                t.classList.remove('opacity-70');
+            } else {
+                t.classList.remove('active-thumb');
+                t.classList.add('opacity-70');
+            }
+        });
+    }
+</script>
+</body></html>

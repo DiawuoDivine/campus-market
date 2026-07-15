@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CampusMarket | Student Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .institution-gradient {
+            background: linear-gradient(135deg, #570000 0%, #800000 100%);
+        }
+        .login-card-shadow {
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary": "#ffffff",
+                        "secondary": "#705d00",
+                        "primary": "#570000",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "surface-container-high": "#eae7e7",
+                        "on-secondary-container": "#6e5c00",
+                        "secondary-fixed": "#ffe16d",
+                        "outline": "#8e706c",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#800000",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "on-primary-container": "#ff8371",
+                        "surface-container": "#f0eded",
+                        "background": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-primary-fixed": "#410000",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed": "#002200",
+                        "tertiary-container": "#004800",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#ffb4a8",
+                        "on-background": "#1c1b1b",
+                        "on-secondary-fixed": "#221b00",
+                        "tertiary": "#002f00",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#e2bfb9",
+                        "on-surface": "#1c1b1b",
+                        "surface-tint": "#b22b1d",
+                        "on-tertiary-container": "#53be42",
+                        "on-surface-variant": "#5a413d",
+                        "inverse-surface": "#313030",
+                        "secondary-fixed-dim": "#e9c400",
+                        "primary-fixed": "#ffdad4",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-fixed": "#8dfb77",
+                        "secondary-container": "#fcd400",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed-dim": "#72de5e",
+                        "on-tertiary-fixed-variant": "#005300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "headline-md": ["\"Source Serif 4\""],
+                        "label-md": ["\"Source Sans 3\""],
+                        "body-md": ["\"Source Sans 3\""],
+                        "body-lg": ["\"Source Sans 3\""],
+                        "title-lg": ["\"Source Sans 3\""]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Top Navigation (Shell Implementation) -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16 fixed top-0 z-50">
+<div class="text-headline-md font-headline-md font-bold text-primary">CampusMarket</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Catalog</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Safe Zones</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Verification</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center pt-16 px-margin-mobile">
+<!-- Animated Background Ornament (Subtle) -->
+<div class="fixed inset-0 pointer-events-none -z-10 opacity-10">
+
+</div>
+<div class="w-full max-w-[1100px] flex flex-col md:flex-row rounded-lg overflow-hidden border border-outline-variant login-card-shadow bg-surface-container-lowest">
+<!-- Branding/Atmosphere Side -->
+<div class="w-full md:w-1/2 relative min-h-[300px] md:min-h-[600px] bg-primary overflow-hidden hidden md:block">
+<div class="absolute inset-0 z-10 bg-primary/40"></div>
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A cinematic, low-angle shot of a grand university library featuring mahogany bookshelves, brass lamps, and focused students in an academic setting. The atmosphere is quiet, prestigious, and scholarly, with soft warm light spilling through high windows. The color palette emphasizes deep maroon and warm gold tones, matching a professional institutional branding." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOiObmt4BkoZ6H38KYppyckJeo-qWjNrrYajcHtnortAc3b3DUKNqbusY2Tzyxe7UQZhjOIPrczGRhpcbJTg8w2V7XnvBP_K7NzUAxeVXPS0c0rji4skO39B-WZ8Bu6dl93DdkdXasCNc6roa5udVaaL8pPEAzySxrsq1vKoZK6uoY1EJ0ELzVC1Sr88hIevL7o13IdZjD5lGNCDlm4cMJ-1ukCHMjzVYsm8Xt_E8fFJs4pJboVLmq')"></div>
+<div class="relative z-20 h-full p-12 flex flex-col justify-between text-on-primary">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<span class="font-headline-md text-headline-md tracking-tight">University Gateway</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg mb-4">Empowering Campus Commerce</h1>
+<p class="font-body-lg text-body-lg opacity-90 max-w-sm">Secure, institutional-grade exchange for the next generation of academic leaders. Sign in with your official university credentials.</p>
+</div>
+<div class="flex gap-4 items-center">
+<div class="w-12 h-1 bg-secondary rounded-full"></div>
+<span class="font-label-md text-label-md uppercase tracking-widest text-secondary-fixed">Established 1924</span>
+</div>
+</div>
+</div>
+<!-- Login Form Side -->
+<div class="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-surface-container-lowest">
+<div class="mb-10 text-center md:text-left">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Student Authentication</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Access your dashboard with institutional credentials.</p>
+</div>
+<form class="space-y-6" id="loginForm">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block" for="indexNumber">Index Number</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">badge</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md rounded-lg" id="indexNumber" name="indexNumber" placeholder="e.g. 5221040876" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface block" for="password">Password</label>
+<a class="font-label-md text-label-md text-primary hover:underline transition-all" href="#">Forgot Password?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full pl-10 pr-12 py-3 bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md rounded-lg" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="eyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary" id="remember" type="checkbox"/>
+<label class="font-body-md text-on-surface-variant select-none" for="remember">Remember this device for 30 days</label>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest hover:bg-primary-container transition-colors shadow-md active:opacity-80 rounded-lg flex items-center justify-center gap-2 group" type="submit">
+                        Sign In Securely
+                        <span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+<div class="mt-12 pt-8 border-t border-outline-variant flex flex-col items-center gap-4">
+<p class="font-body-md text-on-surface-variant">New to CampusMarket?</p>
+<button class="w-full py-3 border border-primary text-primary font-label-md text-label-md hover:bg-surface-container-low transition-all rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">how_to_reg</span>
+                        Create Institutional Account
+                    </button>
+</div>
+<!-- Identity Verification Badge -->
+<div class="mt-8 flex items-center justify-center gap-4 opacity-60 grayscale hover:grayscale-0 transition-all cursor-default">
+<div class="flex items-center gap-1 font-label-md text-xs uppercase tracking-tighter">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                        256-Bit SSL Secured
+                    </div>
+<div class="w-px h-4 bg-outline-variant"></div>
+<div class="flex items-center gap-1 font-label-md text-xs uppercase tracking-tighter">
+<span class="material-symbols-outlined text-sm">shield</span>
+                        EduAuth Compliant
+                    </div>
+</div>
+</div>
+</div>
+<!-- System Message -->
+<div class="mt-12 max-w-lg text-center">
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">
+                By signing in, you agree to our <a class="underline" href="#">Terms of Exchange</a> and <a class="underline" href="#">Privacy Policy</a>. Unauthorized access attempts to the CampusMarket administrative core are logged and reported to the IT Security Office.
+            </p>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-surface-container-low w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto border-t border-outline-variant mt-24">
+<div class="flex flex-col gap-2 mb-8 md:mb-0 items-center md:items-start">
+<div class="font-headline-md text-headline-md text-primary">CampusMarket</div>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 CampusMarket. Institutional Safety &amp; Security.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all focus:underline" href="#">Safety Guidelines</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all focus:underline" href="#">Support Center</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all focus:underline" href="#">Terms of Exchange</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all focus:underline" href="#">Privacy Policy</a>
+</div>
+</footer>
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = 'visibility';
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Mock authentication feedback
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> Verifying...`;
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                alert("This is a UI prototype. Authentication logic is not connected.");
+            }, 1500);
+        });
+
+        // Atmospheric Micro-interaction for input hover/focus
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.closest('.space-y-2').querySelector('label').classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.closest('.space-y-2').querySelector('label').classList.remove('text-primary');
+            });
+        });
+    </script>
+</body></html>

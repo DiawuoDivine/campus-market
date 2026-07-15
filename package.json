@@ -1,0 +1,40 @@
+{
+  "name": "campus-market",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "build:frontend": "bun run --cwd frontend build",
+    "db:migrate": "bun scripts/migrate.ts",
+    "db:push": "bun scripts/migrate.ts",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "bun scripts/seed.ts",
+    "db:reset": "bun -e \"import {rmSync} from 'fs'; rmSync('data/campus-market.sqlite',{force:true})\" && bun scripts/migrate.ts && bun scripts/seed.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@libsql/client": "^0.17.4",
+    "@types/bcryptjs": "^3.0.0",
+    "@types/bun": "latest",
+    "@types/cors": "^2.8.19",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.2.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.3.0",
+    "jose": "^6.2.3",
+    "multer": "^2.2.0",
+    "pino": "^10.3.1",
+    "pino-http": "^11.0.0",
+    "zod": "^4.4.3"
+  }
+}

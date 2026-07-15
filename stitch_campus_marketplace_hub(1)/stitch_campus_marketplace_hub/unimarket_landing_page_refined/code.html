@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UniMarket | Secure Campus Marketplace</title>
+<!-- Google Fonts: Source Serif 4 & Source Sans 3 -->
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,600;0,700;1,600&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#570000",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#800000",
+                        "on-primary-container": "#ff8371",
+                        "primary-fixed": "#ffdad4",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-primary-fixed": "#410000",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "secondary": "#705d00",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#fcd400",
+                        "on-secondary-container": "#6e5c00",
+                        "secondary-fixed": "#ffe16d",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-secondary-fixed": "#221b00",
+                        "on-secondary-fixed-variant": "#544600",
+                        "tertiary": "#002f00",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#004800",
+                        "on-tertiary-container": "#53be42",
+                        "tertiary-fixed": "#8dfb77",
+                        "tertiary-fixed-dim": "#72de5e",
+                        "on-tertiary-fixed": "#002200",
+                        "on-tertiary-fixed-variant": "#005300",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "outline": "#8e706c",
+                        "outline-variant": "#e2bfb9",
+                        "surface": "#fcf9f8",
+                        "on-surface": "#1c1b1b",
+                        "surface-variant": "#e5e2e1",
+                        "on-surface-variant": "#5a413d",
+                        "surface-dim": "#dcd9d9",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container": "#f0eded",
+                        "surface-container-high": "#eae7e7",
+                        "surface-container-highest": "#e5e2e1",
+                        "inverse-surface": "#313030",
+                        "inverse-on-surface": "#f3f0ef",
+                        "inverse-primary": "#ffb4a8",
+                        "background": "#fcf9f8",
+                        "on-background": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["\"Source Serif 4\""],
+                        "body-lg": ["\"Source Sans 3\""],
+                        "display-lg": ["\"Source Serif 4\""],
+                        "headline-md": ["\"Source Serif 4\""],
+                        "label-md": ["\"Source Sans 3\""],
+                        "headline-lg-mobile": ["\"Source Serif 4\""],
+                        "title-lg": ["\"Source Sans 3\""],
+                        "caption": ["\"Source Sans 3\""],
+                        "body-md": ["\"Source Sans 3\""]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #fcf9f8; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .perimeter-gate { border: 1px solid #e2bfb9; position: relative; }
+        .perimeter-gate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #570000;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .perimeter-gate:hover::before { opacity: 1; }
+        .hover-deepen:hover { border-color: #8e706c; transform: translateY(-2px); transition: all 0.3s ease; }
+        .academic-gradient { background: linear-gradient(135deg, #570000 0%, #310000 100%); }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 border-b border-outline-variant bg-surface/95 backdrop-blur-sm">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
+<div class="flex items-center gap-12">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">UniMarket</span>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Catalog</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Safe Zones</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Verification</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center bg-surface-container border border-outline-variant rounded-lg px-4 py-1.5 focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-outline text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-48 lg:w-64" placeholder="Search campus inventory..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="chat_bubble"></button>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+<span>Sign In</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pt-16 pb-24 overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+<div>
+<div class="inline-flex items-center gap-2 bg-primary-fixed px-3 py-1 rounded-full mb-6">
+<span class="material-symbols-outlined text-on-primary-fixed text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-[12px] text-on-primary-fixed uppercase tracking-wider font-bold">University Verified Workspace</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary mb-6 leading-[1.1]">
+                    A Secure Marketplace for Students, by Students.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed max-w-xl">
+                    Experience a trusted, managed environment for campus exchanges. Every participant is identity-gated via university email to ensure a verified institutional community.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<div class="flex-1 flex items-center bg-surface-container-lowest border-2 border-outline-variant rounded-lg px-4 h-14 focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input class="w-full border-none focus:ring-0 font-body-md text-body-md bg-transparent" placeholder="What are you looking for?" type="text"/>
+</div>
+<button class="bg-primary text-on-primary font-bold h-14 px-10 rounded-lg shadow-lg shadow-primary/20 hover:bg-primary-container transition-all whitespace-nowrap">
+                        Browse Listings
+                    </button>
+</div>
+<div class="mt-8 flex flex-wrap items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-highest"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-high"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container"></div>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant"><strong class="text-primary">1,240+</strong> Students Active</span>
+</div>
+<div class="h-4 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-1.5 text-tertiary font-label-md">
+<span class="material-symbols-outlined text-[18px]">security</span>
+<span>100% On-Campus Meetups</span>
+</div>
+</div>
+</div>
+<div class="hidden lg:block relative">
+<div class="aspect-square bg-surface-container rounded-2xl overflow-hidden perimeter-gate border-2 shadow-2xl">
+<img alt="Campus Life" class="w-full h-full object-cover grayscale-[20%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkVo3wQfQZafr5nHAbcgqIkgWVck5atpF4aHxBEf4aZzZNdHmwUciZU0ay6-GlmvRYvOWL0BCpKlJHNtaMYLUN-D4PrEz3KDMzoKE8hDEyrhjz40CnCye1Qdy20xmMF0oPR5P0UABlyGtECcRGdnuf0CTiQIr4fb4XbKyB0Myve_OVD8L5QKRVHBPatHiY0n1yv-M5KwKohTOwpt-KXkigzyktRTko8e_vfxuRkFpeLIgahCAvmMk3"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+<!-- Decorative elements -->
+<div class="absolute -bottom-6 -right-6 w-48 h-48 border-8 border-secondary-fixed opacity-50 -z-10 rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Feature Pillars -->
+<section class="bg-surface-container-low py-20 border-y border-outline-variant">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4 italic">The Secure Perimeter</h2>
+<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Our multi-layered security protocol ensures every transaction happens within the safety of the university environment.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Pillar 1 -->
+<div class="bg-surface-container-lowest perimeter-gate p-8 rounded-xl hover-deepen shadow-sm">
+<div class="w-14 h-14 bg-primary text-on-primary rounded-lg flex items-center justify-center mb-8 shadow-inner">
+<span class="material-symbols-outlined text-[32px]">verified_user</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Identity Handshake</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Access is gated through university domain verification. We use real-time OTP authentication to ensure only current students participate.
+                    </p>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-surface-container-lowest perimeter-gate p-8 rounded-xl hover-deepen shadow-sm">
+<div class="w-14 h-14 bg-primary text-on-primary rounded-lg flex items-center justify-center mb-8 shadow-inner">
+<span class="material-symbols-outlined text-[32px]">encrypted</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Secure Sandbox Chat</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Communicate through our encrypted messaging system. Avoid sharing personal phone numbers while negotiating with verified peers.
+                    </p>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-surface-container-lowest perimeter-gate p-8 rounded-xl hover-deepen shadow-sm">
+<div class="w-14 h-14 bg-primary text-on-primary rounded-lg flex items-center justify-center mb-8 shadow-inner">
+<span class="material-symbols-outlined text-[32px]">location_on</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Verified Safe Zones</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Meet only at pre-approved campus landmarks with high visibility and security presence. Never meet off-campus or in unverified spots.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Categories -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-24">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div>
+<span class="font-label-md text-label-md text-secondary tracking-[0.2em] block mb-2 uppercase font-bold">Curated Catalog</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Student Essentials</h2>
+</div>
+<a class="font-label-md text-label-md text-primary flex items-center gap-2 group border-b-2 border-transparent hover:border-primary pb-1 transition-all" href="#">
+                EXPLORE ALL CATEGORIES 
+                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Textbooks -->
+<div class="bg-surface-container-lowest perimeter-gate rounded-xl overflow-hidden hover-deepen shadow-md group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img alt="Academic textbooks" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkVo3wQfQZafr5nHAbcgqIkgWVck5atpF4aHxBEf4aZzZNdHmwUciZU0ay6-GlmvRYvOWL0BCpKlJHNtaMYLUN-D4PrEz3KDMzoKE8hDEyrhjz40CnCye1Qdy20xmMF0oPR5P0UABlyGtECcRGdnuf0CTiQIr4fb4XbKyB0Myve_OVD8L5QKRVHBPatHiY0n1yv-M5KwKohTOwpt-KXkigzyktRTko8e_vfxuRkFpeLIgahCAvmMk3"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary text-on-secondary font-label-md text-[11px] px-3 py-1 rounded shadow-sm tracking-wider uppercase font-bold">Textbooks</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-4">
+<span class="font-headline-md text-headline-md text-primary">$45.00</span>
+<div class="flex items-center gap-1.5 bg-tertiary-fixed px-2.5 py-1 rounded-full border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-on-tertiary-fixed uppercase tracking-tighter">Verified Seller</span>
+</div>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold mb-6 line-clamp-1">Calculus: Early Transcendentals (8th Ed)</h4>
+<button class="w-full border-2 border-primary text-primary font-bold py-3 rounded-lg hover:bg-primary hover:text-on-primary transition-all duration-300 transform active:scale-95">Start Negotiation</button>
+</div>
+</div>
+<!-- Electronics -->
+<div class="bg-surface-container-lowest perimeter-gate rounded-xl overflow-hidden hover-deepen shadow-md group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img alt="Electronics" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzHanz-uh7Ip-azBjqKjrh587zLNX00ufsQ1jGanQZK2VFhj9EPJ9DMLTiSsq1CFLenr3EhChitnnKfbHnMGr8Ku1HjrWqwYET5p5QuLwQawo3pWwPCnqrBrUhB5qKLbhiC-HJ3pHlkhQx9XB5K6-fvJv4a45i1Q020o58aVO6-AKj2aFJh9rL9haQDYeW63aIxFpjAmrsjVWKX_9pm-c9N1xPXrxUCBLRPeBBLvPCx1B-tjnCGpRo"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary text-on-secondary font-label-md text-[11px] px-3 py-1 rounded shadow-sm tracking-wider uppercase font-bold">Electronics</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-4">
+<span class="font-headline-md text-headline-md text-primary">$120.00</span>
+<div class="flex items-center gap-1.5 bg-tertiary-fixed px-2.5 py-1 rounded-full border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-on-tertiary-fixed uppercase tracking-tighter">Verified Seller</span>
+</div>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold mb-6 line-clamp-1">Noise Cancelling Headphones - Mint</h4>
+<button class="w-full border-2 border-primary text-primary font-bold py-3 rounded-lg hover:bg-primary hover:text-on-primary transition-all duration-300 transform active:scale-95">Start Negotiation</button>
+</div>
+</div>
+<!-- Furniture -->
+<div class="bg-surface-container-lowest perimeter-gate rounded-xl overflow-hidden hover-deepen shadow-md group">
+<div class="aspect-[4/3] relative overflow-hidden bg-surface-container">
+<img alt="Hostel furniture" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJuMF3WlFdiUXC5uOTmOxX2ChZloEaFyo_39aOvhzqnZ4lQv3tbDT_TRgygqZGIHqqW_TqFaifhKe1M3NCtBcS9OBp7F-U_5hLDFciGbD9rvqHr02A7nHQpvJkSbVtjerqMtD7HXydY0T5n4sjt6B6l3bKQp9JjgqChj_Y8wNCJ6xOAIk03MSkysEhxVwGzdB4rDwjHKyHL1MKDkipqiXG3o-vpaZ9EcjM-IOx5YcshOs5b9xce8Vu"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary text-on-secondary font-label-md text-[11px] px-3 py-1 rounded shadow-sm tracking-wider uppercase font-bold">Furniture</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-4">
+<span class="font-headline-md text-headline-md text-primary">$30.00</span>
+<div class="flex items-center gap-1.5 bg-tertiary-fixed px-2.5 py-1 rounded-full border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-on-tertiary-fixed uppercase tracking-tighter">Verified Seller</span>
+</div>
+</div>
+<h4 class="font-body-md text-body-md text-on-surface font-semibold mb-6 line-clamp-1">Ergonomic Study Chair - Black</h4>
+<button class="w-full border-2 border-primary text-primary font-bold py-3 rounded-lg hover:bg-primary hover:text-on-primary transition-all duration-300 transform active:scale-95">Start Negotiation</button>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-24">
+<div class="academic-gradient rounded-3xl p-10 md:p-20 text-center text-on-primary relative overflow-hidden shadow-2xl">
+<!-- Subtle Overlay Grid -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="relative z-10">
+<div class="w-20 h-20 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+<span class="material-symbols-outlined text-[40px]">school</span>
+</div>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg mb-6 leading-tight">Secure Your Campus Experience.</h2>
+<p class="font-body-lg text-body-lg mb-12 max-w-2xl mx-auto text-primary-fixed leading-relaxed">
+                    Transition to the official institutional sandbox for all student commerce. 100% Student-to-Student transactions managed within our verified perimeter.
+                </p>
+<div class="flex flex-col sm:flex-row justify-center gap-6">
+<button class="bg-secondary-container text-on-secondary-container font-bold px-12 py-5 rounded-lg hover:bg-secondary-fixed transition-all shadow-xl hover:-translate-y-1">Verify with @edu Email</button>
+<button class="border-2 border-on-primary/30 backdrop-blur-md px-12 py-5 rounded-lg font-bold hover:bg-on-primary/10 transition-all">Download Safety Charter</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high border-t border-outline-variant pt-20 pb-24 md:pb-12">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="md:col-span-1">
+<span class="font-headline-md text-headline-md font-bold text-primary mb-6 block">UniMarket</span>
+<p class="font-caption text-caption text-on-surface-variant leading-relaxed">
+                    The institutional workspace for secure student-led commerce. Operated under university safety and ethics guidelines.
+                </p>
+</div>
+<div>
+<h5 class="font-label-md text-primary uppercase tracking-widest mb-6">Platform</h5>
+<nav class="flex flex-col gap-4">
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Live Catalog</a>
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Verified Badges</a>
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Campus Locations</a>
+</nav>
+</div>
+<div>
+<h5 class="font-label-md text-primary uppercase tracking-widest mb-6">Safety</h5>
+<nav class="flex flex-col gap-4">
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Security Protocols</a>
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Fraud Prevention</a>
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Code of Conduct</a>
+</nav>
+</div>
+<div>
+<h5 class="font-label-md text-primary uppercase tracking-widest mb-6">Support</h5>
+<nav class="flex flex-col gap-4">
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Dean's Office</a>
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Feedback</a>
+</nav>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-caption text-on-surface-variant">© 2024 UniMarket Academic Workspace. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="text-caption text-on-surface-variant hover:text-primary" href="#">Privacy Charter</a>
+<a class="text-caption text-on-surface-variant hover:text-primary" href="#">Institutional Terms</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-surface/95 backdrop-blur-md px-4 pb-safe border-t border-outline-variant shadow-lg">
+<div class="flex flex-col items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-[10px] uppercase tracking-tighter mt-1">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined text-[28px]">chat</span>
+<span class="text-[10px] uppercase tracking-tighter mt-1">Chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined text-[28px]">add_circle</span>
+<span class="text-[10px] uppercase tracking-tighter mt-1">List</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined text-[28px]">person</span>
+<span class="text-[10px] uppercase tracking-tighter mt-1">Profile</span>
+</div>
+</nav>
+<script>
+    // Micro-interactions
+    document.querySelectorAll('button, a').forEach(el => {
+        el.addEventListener('mousedown', () => {
+            el.style.transform = 'scale(0.96)';
+        });
+        el.addEventListener('mouseup', () => {
+            el.style.transform = 'scale(1)';
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = 'scale(1)';
+        });
+    });
+
+    // Scroll Effects
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('shadow-md');
+        } else {
+            header.classList.remove('shadow-md');
+        }
+    });
+</script>
+</body></html>
