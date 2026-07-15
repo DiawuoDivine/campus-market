@@ -16,7 +16,7 @@ export function createApp() {
   // CORS — allow the Vite dev server and any configured origin
   app.use(
     cors({
-      origin: [ 'https://campus-market-nu-orcin.vercel.app/', 'http://localhost:5174'],
+      origin: [ 'https://campus-market-nu-orcin.vercel.app', 'http://localhost:5174'],
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization'],
