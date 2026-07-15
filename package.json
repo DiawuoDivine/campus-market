@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "bun --watch src/index.ts",
     "start": "bun src/index.ts",
+    "build": "bun db:migrate && bun db:seed",
     "build:frontend": "bun run --cwd frontend build",
     "db:migrate": "bun scripts/migrate.ts",
     "db:push": "bun scripts/migrate.ts",
