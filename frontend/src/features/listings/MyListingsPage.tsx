@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Plus, Loader2, ShoppingBag, Trash2, Edit3, Eye } from 'lucide-react'
-import { fetchListings, deleteListing, updateListing } from '@/lib/api'
+import { fetchListings, deleteListing } from '@/lib/api'
 import { useAuthStore } from '@/stores/authStore'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -32,11 +32,6 @@ export function MyListingsPage() {
 
   const deleteMutation = useMutation({
     mutationFn: deleteListing,
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['my-listings'] }),
-  })
-
-  const archiveMutation = useMutation({
-    mutationFn: ({ id }: { id: string }) => updateListing(id, { status: 'archived' }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['my-listings'] }),
   })
 
