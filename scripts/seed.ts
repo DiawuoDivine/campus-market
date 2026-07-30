@@ -59,14 +59,14 @@ async function seed() {
       ratingAvg: 4.2,
       ratingCount: 5,
     },
-       {
-      indexNumber: '5221040876',
-      email: 'kofi@university.edu',
-      fullName: 'Kofi Asante',
+    {
+      indexNumber: '5223000001',
+      email: 'admin@university.edu',
+      fullName: 'Campus Admin',
       campus: 'Main Campus',
-      hostel: 'Mensah Sarbah Hall',
-      ratingAvg: 4.2,
-      ratingCount: 5,
+      role: 'admin' as const,
+      ratingAvg: 0,
+      ratingCount: 0,
     },
   ]
 
@@ -172,8 +172,9 @@ async function seed() {
   console.log(`✓ ${inserted} new listings inserted`)
   console.log('\n✅  Seed complete!')
   console.log('   DB file: data/campus-market.sqlite')
-  console.log('   Login:   ama@university.edu  /  password123')
-  console.log('   Login:   kofi@university.edu /  password123')
+  console.log('   Login:   ama@university.edu   /  password123')
+  console.log('   Login:   kofi@university.edu  /  password123')
+  console.log('   Admin:   admin@university.edu  /  password123')
 
   closeDb()
 }

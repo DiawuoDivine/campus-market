@@ -56,6 +56,67 @@ export const updateProfile = async (data: Partial<UserDTO>): Promise<UserDTO> =>
 export const fetchCategories = async (): Promise<CategoryDTO[]> =>
   (await request<CategoryDTO[]>('/categories')).data
 
+export const createCategory = async (data: { name: string; slug: string; icon?: string }): Promise<CategoryDTO> =>
+  (await request<CategoryDTO>('/categories', { method: 'POST', body: JSON.stringify(data) })).data
+
+export const deleteCategory = async (id: string) =>
+  request(`/categories/${id}`, { method: 'DELETE' })
+
+// ── Reports ───────────────────────────────────────────────────────────
+export const createReport = async (data: { targetType: 'listing' | 'user'; targetId: string; reason: string }) =>
+  (await request('/reports', { method: 'POST', body: JSON.stringify(data) })).data
+
+export const fetchReports = async (params: { page?: number; limit?: number; status?: string } = {}) => {
+  const qs = new URLSearchParams()
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== undefined && v !== '') qs.set(k, String(v))
+  }
+  return request<import('./types').ReportDTO[]>(`/reports${qs.size ? `?${qs}` : ''}`)
+}
+
+export const updateReport = async (id: string, data: { status: string; action?: string; note?: string }) =>
+  (await request(`/reports/${id}`, { method: 'PATCH', body: JSON.stringify(data) })).data
+
+// ── Admin ─────────────────────────────────────────────────────────────
+export const fetchAdminDashboard = async (): Promise<import('./types').AdminDashboardDTO> =>
+  (await request<import('./types').AdminDashboardDTO>('/admin/dashboard')).data
+
+export const fetchAdminUsers = async (params: { page?: number; limit?: number; search?: string; role?: string; status?: string } = {}) => {
+  const qs = new URLSearchParams()
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== undefined && v !== '') qs.set(k, String(v))
+  }
+  return request<UserDTO[]>(`/admin/users${qs.size ? `?${qs}` : ''}`)
+}
+
+export const updateAdminUser = async (id: string, data: { role?: string; status?: string }): Promise<UserDTO> =>
+  (await request<UserDTO>(`/admin/users/${id}`, { method: 'PATCH', body: JSON.stringify(data) })).data
+
+export const fetchAuditLogs = async (params: { page?: number; limit?: number } = {}) => {
+  const qs = new URLSearchParams()
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== undefined) qs.set(k, String(v))
+  }
+  return request<import('./types').AuditLogDTO[]>(`/admin/audit-logs${qs.size ? `?${qs}` : ''}`)
+}
+
+// ── Upload ────────────────────────────────────────────────────────────
+export const uploadFile = async (file: File): Promise<string> => {
+  const token = localStorage.getItem('access_token')
+  const form = new FormData()
+  form.append('file', file)
+
+  const res = await fetch(`${BASE}/api/v1/upload`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+    body: form,
+  })
+  const body = await res.json() as ApiEnvelope<{ url: string }>
+  if (!res.ok || !body.success) throw new Error(body.error?.message ?? 'Upload failed')
+  return body.data.url
+}
+
 // ── Listings ──────────────────────────────────────────────────────────
 export const fetchListingStats = async () =>
   (await request<{
@@ -85,6 +146,16 @@ export const updateListing = async (id: string, payload: Partial<CreateListingRe
 
 export const deleteListing = async (id: string) =>
   request(`/listings/${id}`, { method: 'DELETE' })
+
+// ── Orders ────────────────────────────────────────────────────────────
+export const fetchOrders = async (): Promise<import('./types').OrderDTO[]> =>
+  (await request<import('./types').OrderDTO[]>('/orders')).data
+
+export const createOrder = async (data: { listingId: string; meetupLocation?: string; meetupTime?: string }): Promise<import('./types').OrderDTO> =>
+  (await request<import('./types').OrderDTO>('/orders', { method: 'POST', body: JSON.stringify(data) })).data
+
+export const updateOrderStatus = async (id: string, status: string): Promise<import('./types').OrderDTO> =>
+  (await request<import('./types').OrderDTO>(`/orders/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) })).data
 
 // ── Favorites ─────────────────────────────────────────────────────────
 export const fetchFavorites = async () =>

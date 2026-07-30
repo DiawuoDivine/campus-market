@@ -11,9 +11,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import { AvatarUpload } from '@/components/ui/avatar-upload'
 import { ListingCard } from '@/features/listings/ListingCard'
 
 export function ProfilePage() {
@@ -101,10 +101,15 @@ export function ProfilePage() {
       {/* Profile header */}
       <div className="bg-white rounded-2xl border border-border p-8 mb-8 shadow-sm">
         <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-          <Avatar className="h-20 w-20 text-xl">
-            <AvatarImage src={profile.avatarUrl} />
-            <AvatarFallback>{initials}</AvatarFallback>
-          </Avatar>
+          <AvatarUpload
+            currentUrl={profile.avatarUrl}
+            name={profile.fullName}
+            size="lg"
+            disabled={!isOwn}
+            onUploaded={(url) => {
+              mutation.mutate({ avatarUrl: url })
+            }}
+          />
 
           <div className="flex-1 min-w-0">
             {editing ? (

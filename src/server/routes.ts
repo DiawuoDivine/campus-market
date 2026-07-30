@@ -22,6 +22,13 @@ import { ReviewService } from '../modules/review/review.service'
 import { reviewRouter } from '../modules/review/review.routes'
 import { favoriteRouter } from '../modules/favorite/favorite.routes'
 import { notificationRouter } from '../modules/notification/notification.routes'
+import { ReportRepository } from '../modules/report/report.repository'
+import { ReportService } from '../modules/report/report.service'
+import { reportRouter } from '../modules/report/report.routes'
+import { AdminRepository } from '../modules/admin/admin.repository'
+import { AdminService } from '../modules/admin/admin.service'
+import { adminRouter } from '../modules/admin/admin.routes'
+import { uploadRouter } from '../modules/upload/upload.routes'
 
 export function registerRoutes(app: Express) {
   const V1 = '/api/v1'
@@ -48,6 +55,11 @@ export function registerRoutes(app: Express) {
   const reviewRepo = new ReviewRepository()
   const reviewService = new ReviewService(reviewRepo)
 
+  const reportRepo = new ReportRepository()
+  const adminRepo = new AdminRepository()
+  const adminService = new AdminService(adminRepo)
+  const reportService = new ReportService(reportRepo, adminRepo)
+
   // Mount routers
   app.use(`${V1}/auth`, authRouter(authService))
   app.use(`${V1}/users`, userRouter(userService))
@@ -58,4 +70,7 @@ export function registerRoutes(app: Express) {
   app.use(`${V1}/reviews`, reviewRouter(reviewService))
   app.use(`${V1}/favorites`, favoriteRouter())
   app.use(`${V1}/notifications`, notificationRouter())
+  app.use(`${V1}/reports`, reportRouter(reportService))
+  app.use(`${V1}/admin`, adminRouter(adminService))
+  app.use(`${V1}/upload`, uploadRouter())
 }

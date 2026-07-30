@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { ImageUpload, type UploadedImage } from '@/components/ui/image-upload'
 import { useToast } from '@/components/ui/toast'
 
 interface FormValues {
@@ -19,12 +20,12 @@ interface FormValues {
   condition: string
   categoryId: string
   status: string
-  imageUrl: string
 }
 
 export function CreateListingPage() {
   const navigate = useNavigate()
   const { toast } = useToast()
+  const [images, setImages] = useState<UploadedImage[]>([])
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
@@ -33,7 +34,6 @@ export function CreateListingPage() {
   })
 
   const { data: categories = [] } = useQuery({ queryKey: ['categories'], queryFn: fetchCategories })
-  const imageUrl = watch('imageUrl')
   const selectedCondition = watch('condition')
   const selectedStatus = watch('status')
   const selectedCategory = watch('categoryId')
@@ -50,7 +50,11 @@ export function CreateListingPage() {
         condition: values.condition,
         categoryId: values.categoryId || undefined,
         status: values.status,
-        images: values.imageUrl ? [{ url: values.imageUrl, position: 0, isPrimary: true }] : [],
+        images: images.map((img) => ({
+          url: img.url,
+          position: img.position,
+          isPrimary: img.isPrimary,
+        })),
       })
       toast({ title: 'Listing published!', description: values.title, variant: 'success' })
       navigate(`/listings/${listing.id}`)
@@ -69,16 +73,31 @@ export function CreateListingPage() {
       </Button>
 
       <div className="bg-white rounded-2xl border border-border p-8 shadow-sm">
-        <p className="text-xs font-bold uppercase tracking-widest text-primary mb-1">Sell on campus</p>
+        <p className="section-label mb-1">Sell on campus</p>
         <h1 className="font-serif text-3xl font-bold text-primary mb-1">Create a listing</h1>
         <p className="text-sm text-muted-foreground mb-7">
-          Clear details and a photo help your item sell faster.
+          Clear details and photos help your item sell faster.
         </p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+
+          {/* Images */}
+          <div className="space-y-2">
+            <Label className="font-semibold">Photos</Label>
+            <ImageUpload
+              images={images}
+              onChange={setImages}
+              maxImages={8}
+              disabled={submitting}
+            />
+            <p className="text-xs text-muted-foreground">
+              Upload from your device. First image (★) is the cover photo.
+            </p>
+          </div>
+
           {/* Title */}
           <div className="space-y-1.5">
-            <Label htmlFor="title">Title *</Label>
+            <Label htmlFor="title" className="font-semibold">Title *</Label>
             <Input
               id="title"
               placeholder="e.g. Calculus textbook, 8th edition"
@@ -87,27 +106,23 @@ export function CreateListingPage() {
             {errors.title && <p className="text-xs text-destructive">{errors.title.message}</p>}
           </div>
 
-          {/* Category & Condition row */}
+          {/* Category & Condition */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label>Category</Label>
+              <Label className="font-semibold">Category</Label>
               <Select value={selectedCategory} onValueChange={(v) => setValue('categoryId', v)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
                 <SelectContent>
                   {categories.map((c) => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-1.5">
-              <Label>Condition *</Label>
+              <Label className="font-semibold">Condition *</Label>
               <Select value={selectedCondition} onValueChange={(v) => setValue('condition', v)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
+                <SelectTrigger><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  {[['new', 'New'], ['like_new', 'Like new'], ['used', 'Used'], ['fair', 'Fair'], ['poor', 'Poor']].map(([v, l]) => (
+                  {[['new','New'],['like_new','Like new'],['used','Used'],['fair','Fair'],['poor','Poor']].map(([v,l]) => (
                     <SelectItem key={v} value={v!}>{l}</SelectItem>
                   ))}
                 </SelectContent>
@@ -118,7 +133,7 @@ export function CreateListingPage() {
           {/* Price & Quantity */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label htmlFor="price">Price (GH₵) *</Label>
+              <Label htmlFor="price" className="font-semibold">Price (GH₵) *</Label>
               <Input
                 id="price" type="number" min="0.01" step="0.01" placeholder="0.00"
                 {...register('price', { required: 'Price is required', min: { value: 0.01, message: 'Must be > 0' } })}
@@ -126,47 +141,27 @@ export function CreateListingPage() {
               {errors.price && <p className="text-xs text-destructive">{errors.price.message}</p>}
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="quantity">Quantity *</Label>
-              <Input
-                id="quantity" type="number" min="1"
-                {...register('quantity', { required: true, min: 1 })}
-              />
+              <Label htmlFor="quantity" className="font-semibold">Quantity *</Label>
+              <Input id="quantity" type="number" min="1" {...register('quantity', { required: true, min: 1 })} />
             </div>
           </div>
 
           {/* Description */}
           <div className="space-y-1.5">
-            <Label htmlFor="description">Description *</Label>
+            <Label htmlFor="description" className="font-semibold">Description *</Label>
             <Textarea
-              id="description"
-              rows={5}
-              placeholder="Describe condition, edition, pickup preference, and anything a buyer should know…"
+              id="description" rows={5}
+              placeholder="Describe condition, edition, pickup preference…"
               {...register('description', { required: 'Description is required', minLength: { value: 10, message: 'Min 10 characters' } })}
             />
             {errors.description && <p className="text-xs text-destructive">{errors.description.message}</p>}
           </div>
 
-          {/* Image URL */}
+          {/* Status */}
           <div className="space-y-1.5">
-            <Label htmlFor="imageUrl">Image URL <span className="text-muted-foreground font-normal">(optional)</span></Label>
-            <Input
-              id="imageUrl" type="url" placeholder="https://…"
-              {...register('imageUrl')}
-            />
-            {imageUrl && (
-              <div className="mt-2 rounded-xl overflow-hidden border border-border aspect-video bg-muted">
-                <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
-              </div>
-            )}
-          </div>
-
-          {/* Publish status */}
-          <div className="space-y-1.5">
-            <Label>Listing status</Label>
+            <Label className="font-semibold">Listing status</Label>
             <Select value={selectedStatus} onValueChange={(v) => setValue('status', v)}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
+              <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="published">Published — visible to everyone</SelectItem>
                 <SelectItem value="draft">Draft — save for later</SelectItem>
@@ -175,13 +170,13 @@ export function CreateListingPage() {
           </div>
 
           {error && (
-            <div className="rounded-lg bg-destructive/10 border border-destructive/30 p-3 text-sm text-destructive">
-              {error}
-            </div>
+            <div className="rounded-lg bg-destructive/10 border border-destructive/30 p-3 text-sm text-destructive">{error}</div>
           )}
 
           <Button type="submit" size="lg" className="w-full gap-2" disabled={submitting}>
-            {submitting ? <><Loader2 size={16} className="animate-spin" /> Publishing…</> : <><Plus size={16} /> Publish listing</>}
+            {submitting
+              ? <><Loader2 size={16} className="animate-spin" /> Publishing…</>
+              : <><Plus size={16} /> Publish listing</>}
           </Button>
         </form>
       </div>

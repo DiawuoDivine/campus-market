@@ -1,7 +1,7 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import {
   BookOpen, Bell, MessageCircle, UserRound, Plus,
-  LogOut, ChevronDown, Menu, X, ShoppingBag,
+  LogOut, ChevronDown, Menu, X, ShoppingBag, Shield, Heart, Package,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -128,7 +128,12 @@ export function Navbar() {
                         <div className="py-1">
                           <DropItem icon={<UserRound size={15} />} label="Profile" to="/profile" onClose={() => setDropOpen(false)} />
                           <DropItem icon={<ShoppingBag size={15} />} label="My Listings" to="/my-listings" onClose={() => setDropOpen(false)} />
+                          <DropItem icon={<Heart size={15} />} label="Favorites" to="/favorites" onClose={() => setDropOpen(false)} />
+                          <DropItem icon={<Package size={15} />} label="Orders" to="/orders" onClose={() => setDropOpen(false)} />
                           <DropItem icon={<Bell size={15} />} label="Notifications" to="/notifications" badge={unreadCount} onClose={() => setDropOpen(false)} />
+                          {(user?.role === 'admin' || user?.role === 'moderator') && (
+                            <DropItem icon={<Shield size={15} />} label="Admin Dashboard" to="/admin" onClose={() => setDropOpen(false)} highlight />
+                          )}
                         </div>
                         <div className="border-t border-border pt-1">
                           <button
@@ -189,7 +194,12 @@ export function Navbar() {
                     onClose={() => setMobileOpen(false)}
                   />
                   <MobileLink to="/my-listings" label="My Listings" active={isActive('/my-listings')} onClose={() => setMobileOpen(false)} />
+                  <MobileLink to="/favorites" label="Favorites" active={isActive('/favorites')} onClose={() => setMobileOpen(false)} />
+                  <MobileLink to="/orders" label="Orders" active={isActive('/orders')} onClose={() => setMobileOpen(false)} />
                   <MobileLink to="/profile" label="Profile" active={isActive('/profile')} onClose={() => setMobileOpen(false)} />
+                  {(user?.role === 'admin' || user?.role === 'moderator') && (
+                    <MobileLink to="/admin" label="Admin Dashboard" active={location.pathname.startsWith('/admin')} onClose={() => setMobileOpen(false)} highlight />
+                  )}
                   <div className="h-px bg-border my-2" />
                   <button onClick={handleLogout} className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-destructive hover:bg-red-50 transition-colors">
                     <LogOut size={16} /> Sign out
@@ -210,12 +220,15 @@ export function Navbar() {
   )
 }
 
-function DropItem({ icon, label, to, badge, onClose }: {
-  icon: React.ReactNode; label: string; to: string; badge?: number; onClose: () => void
+function DropItem({ icon, label, to, badge, onClose, highlight }: {
+  icon: React.ReactNode; label: string; to: string; badge?: number; onClose: () => void; highlight?: boolean
 }) {
   return (
-    <Link to={to} onClick={onClose} className="flex items-center gap-2.5 px-4 py-2.5 text-sm hover:bg-muted transition-colors">
-      <span className="text-muted-foreground">{icon}</span>
+    <Link to={to} onClick={onClose} className={cn(
+      'flex items-center gap-2.5 px-4 py-2.5 text-sm hover:bg-muted transition-colors',
+      highlight && 'text-primary font-semibold',
+    )}>
+      <span className={highlight ? 'text-primary' : 'text-muted-foreground'}>{icon}</span>
       <span className="flex-1">{label}</span>
       {badge != null && badge > 0 && (
         <span className="min-w-[18px] h-[18px] px-1 rounded-full bg-destructive text-white text-[10px] font-bold flex items-center justify-center">

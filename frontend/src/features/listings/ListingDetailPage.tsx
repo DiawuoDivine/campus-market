@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import {
   ArrowLeft, ShoppingBag, MessageCircle, Heart, ShieldCheck,
   BadgeCheck, Star, MapPin, Eye, Tag, ChevronLeft, ChevronRight,
-  Loader2, AlertCircle,
+  Loader2, AlertCircle, Flag,
 } from 'lucide-react'
 import { fetchListing, toggleFavorite, startConversation } from '@/lib/api'
 import { Button } from '@/components/ui/button'
@@ -13,6 +13,7 @@ import { Separator } from '@/components/ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useAuthStore } from '@/stores/authStore'
 import { useToast } from '@/components/ui/toast'
+import { ReportModal } from '@/components/shared/ReportModal'
 import { cn } from '@/lib/cn'
 
 const CONDITION_STYLES: Record<string, string> = {
@@ -34,6 +35,7 @@ export function ListingDetailPage() {
   const [imgIndex, setImgIndex] = useState(0)
   const [liked, setLiked] = useState(false)
   const [messaging, setMessaging] = useState(false)
+  const [reportOpen, setReportOpen] = useState(false)
 
   const { data: listing, isLoading, isError, error } = useQuery({
     queryKey: ['listing', id],
@@ -99,9 +101,21 @@ export function ListingDetailPage() {
   return (
     <div className="container py-8 pb-16">
       {/* Back */}
-      <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="gap-1.5 mb-6 -ml-2 text-muted-foreground hover:text-primary">
-        <ArrowLeft size={16} /> Back
-      </Button>
+      <div className="flex items-center justify-between mb-6">
+        <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="gap-1.5 -ml-2 text-muted-foreground hover:text-primary">
+          <ArrowLeft size={16} /> Back
+        </Button>
+        {!isSeller && isLoggedIn() && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setReportOpen(true)}
+            className="gap-1.5 text-muted-foreground hover:text-destructive"
+          >
+            <Flag size={14} /> Report
+          </Button>
+        )}
+      </div>
 
       <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
         {/* ── Images ── */}
@@ -133,7 +147,6 @@ export function ListingDetailPage() {
               </>
             )}
           </div>
-          {/* Thumbnails */}
           {images.length > 1 && (
             <div className="flex gap-2 overflow-x-auto pb-1">
               {images.map((img, i) => (
@@ -202,7 +215,9 @@ export function ListingDetailPage() {
                   {listing.seller.isVerified && <BadgeCheck size={14} className="text-primary" />}
                 </Link>
                 <div className="flex items-center gap-3 mt-0.5 text-xs text-muted-foreground">
-                  {listing.seller.campus && <span className="flex items-center gap-1"><MapPin size={10} />{listing.seller.campus}</span>}
+                  {listing.seller.campus && (
+                    <span className="flex items-center gap-1"><MapPin size={10} />{listing.seller.campus}</span>
+                  )}
                   {listing.seller.ratingAvg > 0 && (
                     <span className="flex items-center gap-1">
                       <Star size={10} fill="currentColor" className="text-yellow-400" />
@@ -221,7 +236,12 @@ export function ListingDetailPage() {
                 <MessageCircle size={18} /> {messaging ? 'Opening…' : 'Message seller'}
               </Button>
             )}
-            <Button variant="outline" size="lg" onClick={handleFavorite} className={cn('gap-2', liked && 'border-red-300 text-red-500')}>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={handleFavorite}
+              className={cn('gap-2', liked && 'border-red-300 text-red-500')}
+            >
               <Heart size={18} fill={liked ? 'currentColor' : 'none'} />
             </Button>
           </div>
@@ -232,6 +252,17 @@ export function ListingDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Report modal */}
+      {listing && (
+        <ReportModal
+          open={reportOpen}
+          onClose={() => setReportOpen(false)}
+          targetType="listing"
+          targetId={listing.id}
+          targetName={listing.title}
+        />
+      )}
     </div>
   )
 }

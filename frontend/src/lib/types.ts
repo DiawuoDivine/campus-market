@@ -89,6 +89,19 @@ export interface ConversationDTO {
   unreadCount?: number
 }
 
+export interface OrderDTO {
+  id: string
+  listingId?: string | null
+  listingTitle?: string | null
+  buyerId: string
+  sellerId: string
+  status: 'pending' | 'accepted' | 'declined' | 'completed' | 'cancelled'
+  meetupLocation?: string | null
+  meetupTime?: string | null
+  createdAt: string
+  completedAt?: string | null
+}
+
 export interface ReviewDTO {
   id: string
   orderId?: string
@@ -145,6 +158,42 @@ export interface PaginationMeta {
   per_page: number
   total: number
   total_pages: number
+}
+
+export interface ReportDTO {
+  id: string
+  reporterId: string
+  targetType: 'listing' | 'user'
+  targetId: string
+  reason: string
+  status: 'pending' | 'reviewed' | 'dismissed' | 'actioned'
+  createdAt: string
+  reporterName?: string
+  targetLabel?: string
+}
+
+export interface AdminDashboardDTO {
+  totalUsers: number
+  activeUsers: number
+  suspendedUsers: number
+  publishedListings: number
+  soldListings: number
+  pendingReports: number
+  verifiedStudents: number
+  totalListings: number
+  newThisWeek: number
+  topCategories: { id: string; name: string; slug: string; icon: string | null; count: number }[]
+}
+
+export interface AuditLogDTO {
+  id: string
+  adminId: string
+  action: string
+  targetType?: string | null
+  targetId?: string | null
+  meta: Record<string, unknown>
+  createdAt: string
+  adminName?: string
 }
 
 export interface ApiEnvelope<T> {

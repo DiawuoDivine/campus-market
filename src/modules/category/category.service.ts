@@ -18,4 +18,10 @@ export class CategoryService {
   async create(dto: CreateCategoryDto) {
     return this.repo.create(dto)
   }
+
+  async delete(id: string) {
+    const cat = await this.repo.findById(id)
+    if (!cat) throw AppError.notFound('Category')
+    await this.repo.delete(id)
+  }
 }
